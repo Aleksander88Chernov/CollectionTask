@@ -7,6 +7,7 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
         private int size;
         private Node<T> header = new Node<>(null,this.header,this.header);
 
+
         public MyLinkedList(){
 
         }
@@ -57,9 +58,21 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
 
         }
 
-        public void add(T value){
-
+        public void add(T value) {
+            if(isEmpty()){
+                header = new Node<>(value,header.prev, header.next);
+            }else {
+                Node<T> par = header;
+                Node<T> node = new Node<>(value, header.prev,header.next);
+                while(par.next!= null){
+                    par=par.next;
+                }
+                par.next=node;
+                node.next=null;
+            }
         }
+
+
 
         public T remove(T value){
             return null;
@@ -74,7 +87,7 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
             return this.size - o.size();
         }
 
-        public static class Node<T>{
+        public class Node<T>{
             private T element;
             private Node<T> prev;
             private Node<T> next;
