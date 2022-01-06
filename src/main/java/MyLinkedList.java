@@ -2,10 +2,8 @@ import java.util.Collection;
 
 public class MyLinkedList<T> implements Comparable<MyLinkedList> {
 
-        private Node<T> first;
-        private Node<T> last;
         private int size;
-        private Node<T> header = new Node<>(null,this.header,this.header);
+        public Node<T> header = new Node<>();
 
         public MyLinkedList(){
 
@@ -19,10 +17,11 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
                 throw new IndexOutOfBoundsException();
         }
 
-        private Node<T> getNode(int index){
+        public Node<T> getNode(int index){
             chekIndex(index);
             Node<T> a = header;
-            if (index < (index >> 1)){
+
+            if (index < (size >> 1)){
                 for (int i = 0;i <= index;i++)
                     a = a.next;
             }else {
@@ -38,6 +37,20 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
 
         public void add(T value){
 
+            Node<T> a = header;
+            Node<T> newNode = new Node( value);
+
+            while (a.next != null) {
+               a = a.next;
+            }
+              if (a.prev == null) {
+                  a.prev = header;
+              }
+
+           a.next = newNode;
+           header.prev = newNode;
+           newNode.prev = a;
+           size++;
         }
 
         public T remove(T value){
@@ -53,14 +66,23 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
             return this.size - o.size();
         }
 
-        public static class Node<T>{
-            private T element;
-            private Node<T> prev;
-            private Node<T> next;
-            public Node(T element, Node<T> prev, Node<T> next){
+        private class Node<T>{
+             T element;
+             Node prev;
+             Node next;
+
+             public  T ToString(){
+                 return element;
+            }
+            public Node(){
+                 this.element = null;
+                 this.next = header;
+                 this.prev = header;
+            }
+            public Node(T element){
                 this.element = element;
-                this.prev = prev;
-                this.next = next;
+                this.prev = null;
+                this.next = null;
             }
         }
 }
