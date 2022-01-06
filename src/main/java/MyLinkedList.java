@@ -36,6 +36,11 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
             return size;
         }
 
+        public boolean isEmpty()  {
+            return size() == 0;
+
+        }
+
         public void add(T value){
 
         }
