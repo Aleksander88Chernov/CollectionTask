@@ -31,7 +31,7 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
             }
             return a;
         }
-
+// сделал ветку начинаю работу
         public Integer size(){
             return size;
         }
