@@ -5,7 +5,7 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
         private Node<T> first;
         private Node<T> last;
         private int size;
-        private Node<T> header = new Node<>(null,this.header,this.header);
+        private Node<T> header = new Node<T>(null,this.header,this.header);
 
 
         public MyLinkedList(){
@@ -16,11 +16,11 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
         }
 
         private void chekIndex(Integer index){
-            if(index < 0 || index >= size)
-                throw new IndexOutOfBoundsException();
+            if(index >= 0 && index <= size)
+                throw new IndexOutOfBoundsException((index));
         }
 
-        private Node<T> getNode(int index){
+        public Node<T> getNode(int index){
             chekIndex(index);
             Node<T> a = header;
             if (index < (index >> 1)){
@@ -66,7 +66,7 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
         }
 
     public void add(int index, T value) {
-        chekIndex(index);
+
 
         if (index == size)
             Last(value);
@@ -87,8 +87,7 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
         size++;
 
       }
-
-    void Before(T value, Node<T> par ) {
+      void Before(T value, Node<T> par ) {
 
         final Node<T> bef = par.prev;
         final Node<T> newNode = new Node<>(value, bef, par);
@@ -102,7 +101,7 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
 
     Node<T> node(int index) {
 
-        if (index < (size >> 1)) {
+        if(index < (size >> 1)) {
             Node<T> par = first;
             for (int i = 0; i < index; i++)
                 par = par.next;
@@ -114,9 +113,37 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
             return par;
         }
     }
-        public T remove(T value){
-            return null;
+        public T remove(int index){
+
+            return del(node(index));
         }
+
+
+    T del(Node<T> par) {
+
+        final T element = par.element;
+        final Node<T> next = par.next;
+        final Node<T> prev = par.prev;
+
+        if (prev == null) {
+            first = next;
+        } else {
+            prev.next = next;
+            par.prev = null;
+        }
+
+        if (next == null) {
+            last = prev;
+        } else {
+            next.prev = prev;
+            par.next = null;
+        }
+
+        par.element = null;
+        size--;
+        return element;
+    }
+
 
         public void sort(){
 
@@ -128,15 +155,20 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
         }
 
         public class Node<T>{
-            private T element;
-            private Node<T> prev;
-            private Node<T> next;
+            T element;
+             Node<T> prev;
+             Node <T>next;
+             public T ToString(){
+                return element; }
+
             public Node(T element, Node<T> prev, Node<T> next){
                 this.element = element;
                 this.prev = prev;
                 this.next = next;
             }
+
+            }
         }
-}
+
 
 
