@@ -92,7 +92,7 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
 
         final Node<T> bef = par.prev;
         final Node<T> newNode = new Node<>(value, bef, par);
-        bef.prev = newNode;
+        par.prev = newNode;
         if (bef == null)
             first = newNode;
         else
