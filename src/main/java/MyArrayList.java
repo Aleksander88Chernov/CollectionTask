@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
     public class MyArrayList <T> implements Comparable<MyArrayList> {
-        //Начальная емкость для конструктора без параметров.
+        //Начальная емкость для конструктора без параметров.ю
         private static final int  DEFAULT_CAPACITY = 10;
         // Максимальный размер elementData.
         private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
