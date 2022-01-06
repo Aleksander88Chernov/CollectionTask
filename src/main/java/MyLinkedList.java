@@ -44,11 +44,12 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
             return false;
         }
 
-        private boolean contains( T value) {
+        public boolean contains( T value) {
             if (isEmpty()) {
                 return false;
             }
             Node<T> par;
+
             for (par = header; par != null; par = par.next) {
                 if (par.element.equals(value)) {
                     return true;
@@ -59,23 +60,60 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
 
         public boolean add(T value) {
         {
-                linkLast(value);
+                Last(value);
                 return true;
             }
         }
-       void linkLast(T value) {
+
+    public void add(int index, T value) {
+        chekIndex(index);
+
+        if (index == size)
+            Last(value);
+        else
+            Before(value, node(index));
+    }
+
+
+
+       void Last(T value) {
         final Node<T> l = last;
-        final Node<T> newNode = new Node<>(l, value, null);
+        final Node<T> newNode = new Node<>(value,l, null);
         last = newNode;
         if (l == null)
             first = newNode;
         else
             l.next = newNode;
         size++;
-        modCount++;
+
       }
 
+    void Before(T value, Node<T> par ) {
 
+        final Node<T> bef = par.prev;
+        final Node<T> newNode = new Node<>(value, bef, par);
+        bef.prev = newNode;
+        if (bef == null)
+            first = newNode;
+        else
+            bef.next = newNode;
+        size++;
+    }
+
+    Node<T> node(int index) {
+
+        if (index < (size >> 1)) {
+            Node<T> par = first;
+            for (int i = 0; i < index; i++)
+                par = par.next;
+            return par;
+        } else {
+            Node<T> par = last;
+            for (int i = size - 1; i > index; i--)
+                par = par.prev;
+            return par;
+        }
+    }
         public T remove(T value){
             return null;
         }
@@ -84,7 +122,7 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
 
         }
 
-        @Override
+
         public int compareTo(MyLinkedList o) {
             return this.size - o.size();
         }
