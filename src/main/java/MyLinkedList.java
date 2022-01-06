@@ -40,8 +40,7 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
         // равно ли число узлов в связанном списке нулю
         public boolean isEmpty()  {
             if(size()==0){
-                return true;
-            }
+                return true;}
             return false;
         }
 
@@ -58,20 +57,23 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
 
         }
 
-        public void add(T value) {
-            if(isEmpty()){
-                header = new Node<>(value,header.prev, header.next);
-            }else {
-                Node<T> par = header;
-                Node<T> node = new Node<>(value, header.prev,header.next);
-                while(par.next!= null){
-                    par=par.next;
-                }
-                par.next=node;
-                node.next=null;
+        public boolean add(T value) {
+        {
+                linkLast(value);
+                return true;
             }
         }
-
+       void linkLast(T value) {
+        final Node<T> l = last;
+        final Node<T> newNode = new Node<>(l, value, null);
+        last = newNode;
+        if (l == null)
+            first = newNode;
+        else
+            l.next = newNode;
+        size++;
+        modCount++;
+      }
 
 
         public T remove(T value){
