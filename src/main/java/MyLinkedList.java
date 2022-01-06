@@ -31,13 +31,29 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
             }
             return a;
         }
-// сделал ветку начинаю работу
+
         public Integer size(){
             return size;
         }
 
+        // равно ли число узлов в связанном списке нулю
         public boolean isEmpty()  {
-            return size() == 0;
+            if(size()==0){
+                return true;
+            }
+            return false;
+        }
+
+        private boolean contains( T value) {
+            if (isEmpty()) {
+                return false;
+            }
+            Node<T> par;
+            for (par = header; par != null; par = par.next) {
+                if (par.element.equals(value)) {
+                    return true;
+                }
+            } return false;
 
         }
 
