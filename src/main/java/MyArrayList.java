@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
     public class MyArrayList <T> implements Comparable<MyArrayList> {
-        //Начальная емкость для конструктора без параметров.
+        //Начальная емкость для конструктора без параметров.ю
         private static final int  DEFAULT_CAPACITY = 10;
         // Максимальный размер elementData.
         private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
@@ -72,8 +72,9 @@ import java.util.Comparator;
          *При добавлении происходит сдвиг всех элементов справа от указанного индекса на 1 позицию вправо
          */
         public void add(int index,T value){
-            checkIndex(index,size);
+
             capacityInternal(size+1);
+
             /*
              *Массив подготавливается для вставки.
              *Все элементы, находящиеся справа от указанного индекса, будут сдвигаться на одну позицию вправо (index+1).
@@ -113,7 +114,7 @@ import java.util.Comparator;
             return false;
         }
 
-        private void fastRemove(int index){
+        public void fastRemove(int index){
             //количество элементов, которые необходимо скопировать
             int numMoved = size - index - 1;
             //Если index не последний элемент списка происходит смещение всех элементов влево
@@ -185,5 +186,9 @@ import java.util.Comparator;
                 return a.getLength()-b.getLength();
             }
         };
-    }
+
+
+        }
+
+
 
