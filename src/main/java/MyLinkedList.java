@@ -28,12 +28,10 @@ public class MyLinkedList<T extends Comparable<T>> implements Comparable<MyLinke
             throw new IndexOutOfBoundsException((index));
     }
 
-
     public Integer size(){
         return size;
     }
 
-    // равно ли число узлов в связанном списке нулю
     public boolean isEmpty()  {
         if(size()==0){
             return true;}
