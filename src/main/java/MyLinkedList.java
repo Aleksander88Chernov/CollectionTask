@@ -75,7 +75,6 @@ public class MyLinkedList<T extends Comparable<T>> implements Comparable<MyLinke
 
     public void add(int index, T value) {
 
-
         if (index == size)
             Last(value);
         else
