@@ -1,69 +1,77 @@
 import java.util.Collection;
 
-public class MyLinkedList<T> implements Comparable<MyLinkedList> {
+public class MyLinkedList<T extends Comparable<T>> implements Comparable<MyLinkedList> {
 
-        private Node<T> first;
-        private Node<T> last;
-        private int size;
-        private Node<T> header = new Node<T>(null,this.header,this.header);
+    private Node<T> first;
+    private Node<T> last;
+    private int size;
+    private Node<T> header = new Node<T>(null,this.header,this.header);
 
-
-        public MyLinkedList(){
-
+    public void printList(){
+        Node<T> a;
+        int count = 0;
+        for (a = first;size>count;a=a.next){
+            System.out.println(a.element);
+            count++;
         }
+    }
 
-        public MyLinkedList(Collection<? extends T> c){
+    public MyLinkedList(){
+
+    }
+
+    public MyLinkedList(Collection<? extends T> c){
+    }
+
+    private void chekIndex(Integer index){
+        if(index >= 0 && index <= size)
+            throw new IndexOutOfBoundsException((index));
+    }
+
+    public Node<T> getNode(int index){
+        chekIndex(index);
+        Node<T> a = first;
+        if (index < (index >> 1)){
+            for (int i = 0;i <= index;i++)
+                a = a.next;
+        }else {
+            for (int i = size;i > index;i--)
+                a = a.prev;
         }
+        return a;
+    }
 
-        private void chekIndex(Integer index){
-            if(index >= 0 && index <= size)
-                throw new IndexOutOfBoundsException((index));
-        }
+    public Integer size(){
+        return size;
+    }
 
-        public Node<T> getNode(int index){
-            chekIndex(index);
-            Node<T> a = header;
-            if (index < (index >> 1)){
-                for (int i = 0;i <= index;i++)
-                    a = a.next;
-            }else {
-                for (int i = size;i > index;i--)
-                    a = a.prev;
-            }
-            return a;
-        }
+    // равно ли число узлов в связанном списке нулю
+    public boolean isEmpty()  {
+        if(size()==0){
+            return true;}
+        return false;
+    }
 
-        public Integer size(){
-            return size;
-        }
-
-        // равно ли число узлов в связанном списке нулю
-        public boolean isEmpty()  {
-            if(size()==0){
-                return true;}
+    public boolean contains( T value) {
+        if (isEmpty()) {
             return false;
         }
+        Node<T> par;
 
-        public boolean contains( T value) {
-            if (isEmpty()) {
-                return false;
-            }
-            Node<T> par;
-
-            for (par = header; par != null; par = par.next) {
-                if (par.element.equals(value)) {
-                    return true;
-                }
-            } return false;
-
-        }
-
-        public boolean add(T value) {
-        {
-                Last(value);
+        for (par = first; par != null; par = par.next) {
+            if (par.element.equals(value)) {
                 return true;
             }
+        } return false;
+
+    }
+
+    public boolean add(T value) {
+        {
+            Last(value);
+            return true;
         }
+    }
 
     public void add(int index, T value) {
 
@@ -75,8 +83,7 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
     }
 
 
-
-       void Last(T value) {
+    void Last(T value) {
         final Node<T> l = last;
         final Node<T> newNode = new Node<>(value,l, null);
         last = newNode;
@@ -86,8 +93,8 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
             l.next = newNode;
         size++;
 
-      }
-      void Before(T value, Node<T> par ) {
+    }
+    void Before(T value, Node<T> par ) {
 
         final Node<T> bef = par.prev;
         final Node<T> newNode = new Node<>(value, bef, par);
@@ -113,10 +120,24 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
             return par;
         }
     }
-        public T remove(int index){
+    public T remove(int index){
 
-            return del(node(index));
+        return del(node(index));
+    }
+    public T remove(T value){
+        Node<T> a;
+        Node<T> result;
+        int count = 0;
+        for (a = first;size>count;a=a.next){
+            if (a.element.equals(value)) {
+                result = a;
+                del(a);
+                return (T) result;
+            }
+
         }
+        return null;
+    }
 
 
     T del(Node<T> par) {
@@ -143,32 +164,56 @@ public class MyLinkedList<T> implements Comparable<MyLinkedList> {
         size--;
         return element;
     }
+    private  void swap(Node<T> first, Node<T> second) {
 
 
-        public void sort(){
+        Node<T> a = first;
+        Node<T> b = second;
+        a.next = b.next;
+        a.prev = b.prev;
 
-        }
-
-
-        public int compareTo(MyLinkedList o) {
-            return this.size - o.size();
-        }
-
-        public class Node<T>{
-            T element;
-             Node<T> prev;
-             Node <T>next;
-             public T ToString(){
-                return element; }
-
-            public Node(T element, Node<T> prev, Node<T> next){
-                this.element = element;
-                this.prev = prev;
-                this.next = next;
+        first = second;
+        second = a;
+    }
+    public void sort(){
+        Node<T> i;
+        Node<T> j;
+        int count = size-1;
+        int iter = 0;
+        for ( i = last;count>1; i = i.prev) {
+            count--;
+            for (j = first;iter <count; j = j.next) {
+                iter++;
+                int result = j.element.compareTo(j.next.element);
+                if (result > 0)
+                    swap(j, j.next);
             }
-
-            }
         }
+
+    }
+
+
+    public int compareTo(MyLinkedList o) {
+        return this.size - o.size();
+    }
+
+    public class Node<T extends Comparable<T>> implements Comparable<Node>{
+        T element;
+        Node<T> prev;
+        Node <T>next;
+
+        public Node(T element, Node<T> prev, Node<T> next){
+            this.element = element;
+            this.prev = prev;
+            this.next = next;
+        }
+
+        @Override
+        public int compareTo(Node o) {
+            return element.compareTo((T) o.element);
+        }
+    }
+}
 
 
 
