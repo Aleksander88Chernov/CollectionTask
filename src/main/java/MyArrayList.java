@@ -72,7 +72,7 @@ import java.util.Comparator;
          *При добавлении происходит сдвиг всех элементов справа от указанного индекса на 1 позицию вправо
          */
         public void add(int index,T value){
-            checkIndex(index,size);
+
             capacityInternal(size+1);
 
             /*
@@ -188,5 +188,7 @@ import java.util.Comparator;
         };
 
 
-    }
+        }
+
+
 

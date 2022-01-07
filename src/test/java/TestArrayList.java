@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 public class TestArrayList {
     MyArrayList<String> arrayList = new MyArrayList();
-    MyArrayList<String> array = new MyArrayList();
+
 
     String one = "test1", two = "test2";
     String three = "test3", four = "test4";
@@ -33,9 +33,15 @@ public class TestArrayList {
     }
 
     @Test
+    public void noNull(){
+        Assert.assertNotNull(arrayList);
+    }
+
+    @Test
     public void testAddIndexAndValue(){
 
         arrayList.add(0,three);
+        System.out.println(arrayList.get(0));
 
     }
 
@@ -121,7 +127,7 @@ public class TestArrayList {
     @Test
     public void testGetIndex(){
 
-       ;
+
         arrayList.add(one);
         arrayList.add(two);
         arrayList.add(three);
@@ -139,7 +145,7 @@ public class TestArrayList {
         arrayList.add(one);
         arrayList.add(two);
         arrayList.add(three);
-        arrayList.add(four);;
+        arrayList.add(four);
         arrayList.add(one);
         arrayList.add(two);
         arrayList.add(three);
@@ -164,11 +170,8 @@ public class TestArrayList {
         arrayList.add(two);
         arrayList.add(three);
         arrayList.add(four);
-        array.add(one);
-        array.add(two);
-        array.add(three);
-        array.add(four);
         arrayList.sort();
+
 
     }
 
