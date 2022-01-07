@@ -27,12 +27,12 @@ public class MyLinkedList<T extends Comparable<T>> implements Comparable<MyLinke
         if(index >= 0 && index <= size)
             throw new IndexOutOfBoundsException((index));
     }
-     
+
     public Integer size(){
         return size;
     }
 
-    
+
     public boolean isEmpty()  {
         if(size()==0){
             return true;}
@@ -61,7 +61,6 @@ public class MyLinkedList<T extends Comparable<T>> implements Comparable<MyLinke
     }
      
     public void add(int index, T value) {
-
 
         if (index == size)
             Last(value);
