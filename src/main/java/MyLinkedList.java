@@ -27,19 +27,6 @@ public class MyLinkedList<T extends Comparable<T>> implements Comparable<MyLinke
         if(index >= 0 && index <= size)
             throw new IndexOutOfBoundsException((index));
     }
-    //Возвращает узел по  индексу 
-    public Node<T> getNode(int index){
-        chekIndex(index);
-        Node<T> a = first;
-        if (index < (index >> 1)){
-            for (int i = 0;i <= index;i++)
-                a = a.next;
-        }else {
-            for (int i = size;i > index;i--)
-                a = a.prev;
-        }
-        return a;
-    }
     //Возвращает  количество элементов 
     public Integer size(){
         return size;
