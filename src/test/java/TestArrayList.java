@@ -121,7 +121,7 @@ public class TestArrayList {
     @Test
     public void testGetIndex(){
 
-        MyArrayList<String> arrayList = new MyArrayList();
+       ;
         arrayList.add(one);
         arrayList.add(two);
         arrayList.add(three);
