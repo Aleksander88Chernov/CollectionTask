@@ -6,7 +6,7 @@ public class MyLinkedList<T extends Comparable<T>> implements Comparable<MyLinke
     private Node<T> last;
     private int size;
     private Node<T> header = new Node<T>(null,this.header,this.header);
-    //Печатает все элементы LinkedList
+    
     public void printList(){
         Node<T> a;
         int count = 0;
@@ -22,23 +22,23 @@ public class MyLinkedList<T extends Comparable<T>> implements Comparable<MyLinke
 
     public MyLinkedList(Collection<? extends T> c){
     }
-    //Валидация индекса 
+     
     private void chekIndex(Integer index){
         if(index >= 0 && index <= size)
             throw new IndexOutOfBoundsException((index));
     }
-    //Возвращает  количество элементов 
+     
     public Integer size(){
         return size;
     }
 
-    // равно ли число узлов в связанном списке нулю
+    
     public boolean isEmpty()  {
         if(size()==0){
             return true;}
         return false;
     }
-    //Определяет есть ли элемент в списке
+    
     public boolean contains( T value) {
         if (isEmpty()) {
             return false;
@@ -52,14 +52,14 @@ public class MyLinkedList<T extends Comparable<T>> implements Comparable<MyLinke
         } return false;
 
     }
-    //Добавляет новый  элемент в конец списка 
+     
     public boolean add(T value) {
         {
             Last(value);
             return true;
         }
     }
-    //Добавляет новый  элемент в  список по индексу 
+     
     public void add(int index, T value) {
 
 
@@ -93,7 +93,7 @@ public class MyLinkedList<T extends Comparable<T>> implements Comparable<MyLinke
             bef.next = newNode;
         size++;
     }
-    //Возвращает узел из списка по индексу 
+     
     Node<T> node(int index) {
 
         if(index < (size >> 1)) {
@@ -108,12 +108,12 @@ public class MyLinkedList<T extends Comparable<T>> implements Comparable<MyLinke
             return par;
         }
     }
-    //Удаляет  узел из списка по индексу 
+     
     public T remove(int index){
 
         return del(node(index));
     }
-    //Удаляет  узел из списка по значению 
+ 
     public T remove(T value){
         Node<T> a;
         Node<T> result;
@@ -154,7 +154,7 @@ public class MyLinkedList<T extends Comparable<T>> implements Comparable<MyLinke
         size--;
         return element;
     }
-    //Меняет узлы местами
+    
     private  void swap(Node<T> first, Node<T> second) {
         Node<T> a = first;
         Node<T> b = second;
@@ -162,7 +162,7 @@ public class MyLinkedList<T extends Comparable<T>> implements Comparable<MyLinke
         a.element = b.element;
         b.element = aElement;
     }
-   //Сортировка списка пузырьком 
+   
     public void sort(){
         Node<T> i;
         Node<T> j;
