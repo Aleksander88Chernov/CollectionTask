@@ -74,6 +74,7 @@ import java.util.Comparator;
         public void add(int index,T value){
             checkIndex(index,size);
             capacityInternal(size+1);
+
             /*
              *Массив подготавливается для вставки.
              *Все элементы, находящиеся справа от указанного индекса, будут сдвигаться на одну позицию вправо (index+1).
@@ -113,7 +114,7 @@ import java.util.Comparator;
             return false;
         }
 
-        private void fastRemove(int index){
+        public void fastRemove(int index){
             //количество элементов, которые необходимо скопировать
             int numMoved = size - index - 1;
             //Если index не последний элемент списка происходит смещение всех элементов влево
