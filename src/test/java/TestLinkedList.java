@@ -17,11 +17,14 @@ public class TestLinkedList {
     String three = "test3", four = "test4";
 
     @Test
+
     public void testSize() {
 
         list.add(one);
         list.add(two);
         System.out.println(list.size());
+
+
     }
 
     @Test
@@ -29,6 +32,7 @@ public class TestLinkedList {
         list.add(one);
         list.add(two);
         System.out.println(list.isEmpty());
+        assertFalse(list.isEmpty());
     }
 
     @Test
@@ -51,6 +55,7 @@ public class TestLinkedList {
         list.add(two);
         list.add(three);
         list.add(four);
+        assertTrue(list.contains(two));
         System.out.println(list.contains(two));
     }
 
@@ -60,6 +65,7 @@ public class TestLinkedList {
         list.add(two);
         list.add(three);
         list.add(four);
+        assertTrue(list.add(one));
         list.printList();
 
     }
@@ -70,6 +76,9 @@ public class TestLinkedList {
         list.add(1,two);
         list.add(2,four);
         list.add(3,three);
+        assertTrue(list.contains(four));
+        assertTrue(list.contains(three));
+
         list.printList();
 
 
@@ -81,6 +90,7 @@ public class TestLinkedList {
         list.add(2,four);
         list.node(1);
 
+
     }
     @Test
     public void testRemoveIndex(){
@@ -88,7 +98,8 @@ public class TestLinkedList {
         list.add(two);
         list.add(three);
         list.add(four);
-        list.remove(3);
+
+        assertEquals( four,list.remove(3));
         list.printList();
 
     }
@@ -100,6 +111,7 @@ public class TestLinkedList {
         list.add(three);
         list.add(four);
         list.remove(two);
+        assertFalse(list.contains(two));
         list.printList();
     }
 

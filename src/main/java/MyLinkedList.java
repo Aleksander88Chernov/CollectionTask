@@ -34,7 +34,8 @@ public class MyLinkedList<T extends Comparable<T>> implements Comparable<MyLinke
 
     public boolean isEmpty()  {
         if(size()==0){
-            return true;}
+            return true;
+        }
         return false;
     }
 

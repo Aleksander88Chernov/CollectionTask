@@ -28,6 +28,8 @@ public class TestArrayList {
         arrayList.add(one);
         arrayList.add(two);
         arrayList.add(three);
+        assertEquals(three, arrayList.get(2));
+        assertEquals(two, arrayList.get(1));
         System.out.println(arrayList.get(two));
 
 
@@ -42,6 +44,10 @@ public class TestArrayList {
     public void testAddIndexAndValue(){
 
         arrayList.add(0,three);
+        arrayList.add(1,two);
+        arrayList.add(2,one);
+        assertEquals(two, arrayList.get(1));
+        assertEquals(one, arrayList.get(2));
         System.out.println(arrayList.get(0));
 
     }
@@ -60,6 +66,7 @@ public class TestArrayList {
         arrayList.add(two);
         arrayList.add(one);
         arrayList.add(two);
+        assertEquals(12,arrayList.getSize());
         System.out.println(arrayList.getSize());
     }
 
@@ -78,6 +85,7 @@ public class TestArrayList {
         arrayList.add(two);
         arrayList.add(one);
         arrayList.add(two);
+        assertEquals(15,arrayList.getLength());
         System.out.println(arrayList.getLength());
 
     }
@@ -88,7 +96,7 @@ public class TestArrayList {
         arrayList.add(two);
         arrayList.add(three);
         arrayList.add(four);
-        arrayList.remove(2);
+        assertEquals(three,arrayList.remove(2));
         System.out.println(arrayList.get(2));
 
 
@@ -99,8 +107,9 @@ public class TestArrayList {
         arrayList.add(two);
         arrayList.add(three);
         arrayList.add(four);
-        arrayList.removeByValue(two);
+        assertTrue(arrayList.removeByValue(two));
         System.out.println(arrayList.get(two));
+
 
     }
     @Test
@@ -109,7 +118,7 @@ public class TestArrayList {
         arrayList.add(two);
         arrayList.add(three);
         arrayList.add(four);
-        arrayList.fastRemove(2);
+        assertEquals(three,arrayList.remove(2));
         System.out.println(arrayList.get(2));
     }
 
@@ -119,6 +128,7 @@ public class TestArrayList {
         arrayList.add(one);
         arrayList.add(two);
         arrayList.add(three);
+        assertEquals(three,arrayList.get(2));
         System.out.println(arrayList.get(three));
 
 
@@ -128,10 +138,10 @@ public class TestArrayList {
     @Test
     public void testGetIndex(){
 
-
         arrayList.add(one);
         arrayList.add(two);
         arrayList.add(three);
+        assertEquals(three,arrayList.get(2));
         System.out.println(arrayList.get(2));
 
     }
@@ -163,6 +173,9 @@ public class TestArrayList {
         arrayList.trimToSize();
         System.out.println(arrayList.getSize());
         System.out.println(arrayList.getLength());
+        assertEquals(13,arrayList.getSize());
+        assertEquals(13,arrayList.getLength());
+
 
     }
     @Test
@@ -172,7 +185,6 @@ public class TestArrayList {
         arrayList.add(three);
         arrayList.add(four);
         arrayList.sort();
-
 
     }
 
